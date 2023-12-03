@@ -1,4 +1,3 @@
-import time
 import re
 
 # Compiled regexes for finding the first and last digit in a string
@@ -60,14 +59,12 @@ def main():
     """
     Main function to calculate the sum of the first and last digit in each line of the input file.
     """
-    start_time = time.time()
 
     with open("input.txt", "r") as fh:
         data = fh.readlines()
 
     sum_of_digits = sum(find_first_last_digit(line) for line in data)
 
-    print(f"--- {time.time() - start_time} seconds ---")
     print(sum_of_digits)
 
 
