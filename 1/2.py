@@ -35,18 +35,7 @@ replacements = {
     "9": "9",
 }
 
-
 def find_first_last_digit(s):
-    """
-    Find the first and last digit in a string and return their sum as an integer.
-
-    Args:
-        s (str): The input string.
-
-    Returns:
-        int: The sum of the first and last digit.
-    """
-
     first_digit = digit_regex.search(s).group()
     last_digit = reversed_digit_regex.search(s[::-1]).group()
 
@@ -54,19 +43,10 @@ def find_first_last_digit(s):
         f"{replacements.get(first_digit, first_digit)}{replacements.get(last_digit[::-1], last_digit[::-1])}"
     )
 
+with open("input.txt", "r") as fh:
+    data = fh.readlines()
 
-def main():
-    """
-    Main function to calculate the sum of the first and last digit in each line of the input file.
-    """
+sum_of_digits = sum(find_first_last_digit(line) for line in data)
 
-    with open("input.txt", "r") as fh:
-        data = fh.readlines()
+print(sum_of_digits)
 
-    sum_of_digits = sum(find_first_last_digit(line) for line in data)
-
-    print(sum_of_digits)
-
-
-if __name__ == "__main__":
-    main()
