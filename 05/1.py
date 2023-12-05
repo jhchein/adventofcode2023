@@ -7,6 +7,7 @@ numbers = re.compile(r"(\d+)")
 def map_destinations(sources: list, map: str) -> dict:
     """Returns a mapping of sources to destinations ({source: destination}}])"""
     map_lines = map.split("\n")[1:]                                                 # Remove first line (Title)
+    print(f"Sources: {sources}")
     processed_map = {
         source: int(destination_start) + (source - int(source_start))               # Create mapping: {source: destination + (source - start)}
         for map_line in map_lines
@@ -14,10 +15,11 @@ def map_destinations(sources: list, map: str) -> dict:
         for destination_start, source_start, range in [numbers.findall(map_line)]   # destination, source, range
         if int(source_start) <= source <= int(source_start) + int(range) - 1        # if source is in range
     }
+    print(f"Processed map: {processed_map}")
     return processed_map
 
 
-with open("input.txt", "r") as f:
+with open("example.txt", "r") as f:
     lines = f.readlines()
 
 seeds = [int(seed) for seed in lines[0].split()[1:]]                # Seeds are the first line of the input
