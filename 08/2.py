@@ -24,8 +24,6 @@ def get_z_encounters(node):
 
 cycles = [Z_encounters[1] - Z_encounters[0] for starting_node in starting_nodes for Z_encounters in [get_z_encounters(starting_node)]]
 
-# If all nodes have encountered Z, we check the cycles of each node.
-# We can then calculate the Least Common Multiple of all cycles
-# to find the number of steps required to reach the end of the desert.
+# See Readme for explanation
 print(f"Cycles: {cycles}")
 print(f"LCM: {reduce(lambda x, y: x * y // gcd(x, y), cycles)}")
