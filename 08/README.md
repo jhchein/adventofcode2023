@@ -1,18 +1,24 @@
-# Thoughts
+# Navigating the Desert: An Algorithmic Journey
 
-## Day 08 part 1
+(*Created with the help of GPT-4-turbo*)
 
-Part 1 is pretty straightforward:
+Welcome to our exploration of algorithmic challenges! In this journey, we're dealing with a fascinating problem that involves navigating through a virtual desert by following specific instructions. Let's dive into the details.
 
-- You parse the map as a nested dict with `node`, and the `L` and `R` keys.
-- You parse the LR instructions as a list and infinely interate over them.
-  - Once you encounter the "ZZZ" node, you break the loop.
-  - You could use try except Stopiteration, but itertools cycle is more efficient and cleaner.
+## Day 08 Part 1: Charting the Course
 
-## Day 08 part 2
+The first part of our adventure is quite straightforward. We're essentially mapping out our journey. Here's how we do it:
 
-This part has a twist:
+- **Creating the Map**: Imagine the desert as a network of paths. We represent this network as a nested dictionary, where each 'node' (a point in the desert) is connected to others via 'L' (left) and 'R' (right) paths.
+- **Following Instructions**: Our movement instructions are a list that we follow repeatedly. Think of it as an endless loop of directions until we reach a special "ZZZ" node, signaling the end of the path. To keep our loop efficient and clean, we're using Python's itertools.cycle instead of traditional loop constructs.
 
-We start parallelizing the search for multiple starting nodes. Unfortunately it's quite unlikely to hit Z nodes for all six starting nodes.
+## Day 08 Part 2: Adding Complexity
 
-The instructions lead us to cylce the map (otherwise it would stop in a dead-end). For example starting at node 1 we might encounter a Z node after [2,4,6] steps, while node 2 encounters a Z node after [3,5,6,9,10,12] steps. We can now calculate the `least common multiple` of the cycle times of each starting node to find the number of steps required to reach the end of the desert. Given that we can use the LCM, there is no more need to parallelize the search.
+Now, the real challenge begins. We're adding an intriguing twist:
+
+- **Parallel Exploration**: Instead of one, we now start from multiple points in our desert map. The goal is to find how many steps it takes for all paths to converge on special 'Z' nodes. This is quite a herculean task – it's about 10 trillion iterations!
+- **Cycling Through the Map**: To ensure we don't hit a dead end, we cycle through the map. For instance, starting from one node, we might find a 'Z' node after a certain number of steps. Each starting point has its own cycle time.
+- **Calculating the Optimal Path**: Here's where it gets mathematically interesting. We calculate the `least common multiple` (LCM) of all these cycle times. This number represents the minimum steps required for all paths to reach their end. With the LCM, the need for parallel exploration is eliminated!
+
+## Dive into the Code
+
+In our Python code, we use regular expressions to parse the map, itertools.cycle for efficient looping, and some nifty math to calculate the LCM. Check out the script to see these concepts in action!
