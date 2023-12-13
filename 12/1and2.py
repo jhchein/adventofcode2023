@@ -38,6 +38,10 @@ def main(filename, multiplier=1):
     print(total)
 
 if __name__ == '__main__':
+    # sys.argv[1] = filename (example.txt for part 1, example2.txt for part 2, input.txt for the solution)
+    # sys.argv[2] = multiplier (1 for part 1, 5 for part 2)
     main(sys.argv[1], int(sys.argv[2]))
+
+
 
 # 815364548481 !
